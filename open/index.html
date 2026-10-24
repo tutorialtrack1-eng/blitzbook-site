@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Open in BlitzBook</title>
+<style>
+  :root { --ink: #1b2733; --muted: #607d8b; --blue: #1e5aa8; --teal: #00897b; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: linear-gradient(135deg, #1a237e, #0b3c5d 55%, #00897b); color: var(--ink); padding: 16px; }
+  .card { background: #fff; border-radius: 24px; padding: 28px 24px; max-width: 420px; width: 100%; box-shadow: 0 18px 50px rgba(0,0,0,.28); text-align: center; }
+  h1 { font-size: 22px; margin: 0 0 6px; }
+  .no { display: inline-block; font-weight: 700; font-size: 20px; color: var(--blue); background: #e3f2fd; border-radius: 12px; padding: 8px 16px; margin: 10px 0 18px; word-break: break-all; }
+  p { color: var(--muted); font-size: 14px; line-height: 1.45; margin: 0 0 16px; }
+  a.btn { display: block; text-decoration: none; color: #fff; font-weight: 700; padding: 15px; border-radius: 16px; background: linear-gradient(90deg, var(--blue), var(--teal)); margin-bottom: 10px; }
+  a.alt { display: block; text-decoration: none; color: var(--blue); font-weight: 700; padding: 13px; border-radius: 16px; border: 1.5px solid var(--blue); }
+  .foot { color: #90a4ae; font-size: 12px; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <h1>Open in BlitzBook</h1>
+  <div class="no" id="no">…</div>
+  <p id="msg">Opening the entry in the BlitzBook app…</p>
+  <a class="btn" id="app" href="#">Open in the app</a>
+  <a class="alt" id="web" href="../">Open the web portal</a>
+  <div class="foot">blitzbook.co.in</div>
+</div>
+<script>
+  // The link is https://blitzbook.co.in/open/#<entry number>; the Android app also catches it, and this page is
+  // what a browser shows: it hands over to the app (blitzbook://open/<no>) and offers the portal otherwise.
+  (function () {
+    var no = decodeURIComponent((location.hash || '').replace(/^#/, '')).trim();
+    if (!no) { no = decodeURIComponent(location.search.replace(/^\?/, '')).trim(); }
+    document.getElementById('no').textContent = no || 'No entry number';
+    var deep = 'blitzbook://open/' + encodeURIComponent(no);
+    document.getElementById('app').setAttribute('href', deep);
+    document.getElementById('web').setAttribute('href', '../#open?no=' + encodeURIComponent(no));
+    if (!no) { document.getElementById('msg').textContent = 'This link carries no entry number.'; return; }
+    var android = /android/i.test(navigator.userAgent);
+    if (android) {
+      setTimeout(function () { location.href = deep; }, 300);
+      setTimeout(function () { document.getElementById('msg').textContent = 'If the app did not open, install BlitzBook from blitzbook.co.in, or open the entry in the web portal.'; }, 2500);
+    } else {
+      document.getElementById('msg').textContent = 'Tap "Open in the app" on an Android phone with BlitzBook installed, or open the entry in the web portal.';
+    }
+  })();
+</script>
+</body>
+</html>

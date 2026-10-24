@@ -1,0 +1,6 @@
+{
+  "versionCode": 22,
+  "versionName": "1.21",
+  "apk": "https://blitzbook.co.in/BlitzBook-1.21.apk",
+  "notes": "Every document number is a link: the invoice number in the Sales Report, the party ledger, supplier outstanding, and the invoices that notes, receipts and challans refer to open with a tap (hold to copy the link). Also in 1.20: logins last 24 hours, totals above the GST breakdown on the standard PDF, blank cells beside the classic totals, a linked footer, a new invoice screen look."
+}

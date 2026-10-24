@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1E1B4B">
+  <title>BlitzBook - Billing &amp; Accounts, made simple</title>
+  <!-- Dark or light before the first paint: the choice made with the top-bar button, else the system setting (see Theme in js/app.js) -->
+  <script>try { document.documentElement.setAttribute('data-theme', localStorage.getItem('blitzbook.theme') || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')); } catch (e) { /* storage blocked */ }</script>
+  <!-- Installable as an app: Android / desktop Chrome offer "Install", iPhone / iPad use Safari > Share > Add to Home Screen -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="BlitzBook">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322D3EE'/%3E%3Cstop offset='.5' stop-color='%236366F1'/%3E%3Cstop offset='1' stop-color='%23E879F9'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M35 8 14 36h15l-3 20 24-30H35z' fill='white'/%3E%3C/svg%3E">
+  <!-- Optional web font; without a connection the portal falls back to the system font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="root"></div>
+  <div id="dialogs"></div>
+  <script src="js/native.js"></script>
+  <script src="js/util.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/subscription.js"></script>
+  <script src="js/appformat.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/sync.js"></script>
+  <script src="js/print.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/invoice.js"></script>
+  <script src="js/ledger.js"></script>
+  <script src="js/money.js"></script>
+  <script src="js/reports.js"></script>
+  <script src="js/gst.js"></script>
+  <script src="js/migrate.js"></script>
+  <script src="js/companies.js"></script>
+  <script src="js/hr.js"></script>
+  <script>
+    // The books are loaded from IndexedDB (moved out of localStorage the first time) before the portal starts
+    Store.init().then(function () { App.start(); });
+    // The offline shell (sw.js) needs http(s); opened as a file the portal simply runs without it
+    if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) navigator.serviceWorker.register('sw.js').catch(function () { /* not available */ });
+  </script>
+</body>
+</html>
