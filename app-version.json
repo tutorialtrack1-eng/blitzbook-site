@@ -1,0 +1,6 @@
+{
+  "versionCode": 23,
+  "versionName": "1.22",
+  "apk": "https://blitzbook.co.in/BlitzBook-1.22.apk",
+  "notes": "Line of activity invoicing enhancements, dynamic fields for restaurant, services & transport, POS quick menu with list/grid view, and 3 print layouts (Standard, Classic Tally, Thermal Receipt)."
+}
