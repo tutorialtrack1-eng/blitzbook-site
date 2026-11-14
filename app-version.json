@@ -1,0 +1,6 @@
+{
+  "versionCode": 65,
+  "versionName": "2.32",
+  "apk": "https://blitzbook.co.in/BlitzBook-2.32.apk",
+  "notes": "The OTP is always the real one mailed from info@blitzbook.co.in: when the server cannot be reached the app now says so instead of showing a test OTP."
+}
