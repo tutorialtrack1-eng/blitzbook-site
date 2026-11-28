@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>BlitzBook - Secure payment</title>
+<!-- The page the app and the portal open to pay: the payment function (server/supabase/functions/cashfree) makes a
+     Cashfree order and sends the customer here with its payment session; Cashfree's checkout SDK then takes over
+     (UPI, card, net banking) and brings the customer back to the portal (#subscription?link=...) when it is done.
+     It lives on the portal because Supabase serves whatever an Edge Function answers as plain text. -->
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:#f4f6fb;color:#1f2a44}
+  .card{background:#fff;border-radius:14px;padding:28px 24px;max-width:380px;margin:16px;text-align:center;box-shadow:0 6px 28px rgba(31,42,68,.1)}
+  h1{font-size:22px;margin:0 0 12px}p{margin:8px 0;line-height:1.5}a{color:#2b5bd7}.hint{color:#6b7590;font-size:14px}
+  .btn{display:inline-block;margin-top:8px;padding:10px 18px;border-radius:8px;background:#2b5bd7;color:#fff;text-decoration:none;font-weight:600}
+</style>
+</head>
+<body>
+<div class="card">
+  <h1 id="title">Secure payment</h1>
+  <p id="msg">Opening the Cashfree payment page&hellip;</p>
+  <p class="hint" id="hint">Pay by UPI, card or net banking. You come back to BlitzBook when it is done.</p>
+  <p><a class="btn" href="#" id="again">Open the payment page</a></p>
+</div>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var session = q.get('session') || '', mode = q.get('mode') === 'sandbox' ? 'sandbox' : 'production';
+  var plan = q.get('plan') || '', amount = q.get('amount') || '';
+  var msg = document.getElementById('msg'), again = document.getElementById('again');
+  if (plan) msg.innerHTML = 'Opening the Cashfree payment page for <b></b>' + (amount ? ', Rs ' + Number(amount) : '') + '&hellip;';
+  if (plan) msg.querySelector('b').textContent = plan;
+  if (!session) {
+    document.getElementById('title').textContent = 'Payment not found';
+    msg.textContent = 'This payment could not be found. Go back to BlitzBook and start the purchase again.';
+    document.getElementById('hint').textContent = '';
+    again.style.display = 'none';
+    return;
+  }
+  function go() {
+    try { Cashfree({ mode: mode }).checkout({ paymentSessionId: session, redirectTarget: '_self' }); }
+    catch (e) { msg.textContent = 'Could not open the payment page: ' + e.message; }
+  }
+  again.addEventListener('click', function (ev) { ev.preventDefault(); go(); });
+  go();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Delete your BlitzBook account</title>
+<meta name="description" content="How to ask for your BlitzBook account and its data to be deleted, what is deleted and what is kept.">
+<!-- The account deletion page the Google Play listing links to (Data safety > Delete account URL; README "Google
+     Play Store"). The request is carried out by hand: Supabase dashboard > Authentication > Users > delete the user,
+     which takes the profile and the books with it (schema.sql, on delete cascade). -->
+<style>
+  :root { --ink: #1b2733; --muted: #546e7a; --blue: #1e5aa8; --line: #e3e8ee; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: #f4f6fb; line-height: 1.55; }
+  header { background: linear-gradient(135deg, #1a237e, #0b3c5d 55%, #00897b); color: #fff; padding: 28px 16px; }
+  header .in, main { max-width: 760px; margin: 0 auto; }
+  header h1 { margin: 0 0 4px; font-size: 26px; }
+  header p { margin: 0; opacity: .85; font-size: 14px; }
+  main { background: #fff; padding: 8px 24px 32px; }
+  @media (min-width: 800px) { main { margin-top: 24px; margin-bottom: 32px; border-radius: 16px; box-shadow: 0 6px 28px rgba(31,42,68,.08); } }
+  h2 { font-size: 18px; color: var(--blue); margin: 28px 0 8px; }
+  p, li { font-size: 15px; }
+  ol, ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  a { color: var(--blue); }
+  a.btn { display: inline-block; text-decoration: none; color: #fff; font-weight: 700; padding: 13px 20px; border-radius: 12px; background: #c62828; margin: 10px 0 4px; }
+  .note { background: #fff8e1; border: 1px solid #ffe082; border-radius: 12px; padding: 12px 14px; font-size: 14px; margin: 14px 0; }
+  .foot { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); margin-top: 28px; padding-top: 14px; }
+</style>
+</head>
+<body>
+<header><div class="in">
+  <h1>Delete your BlitzBook account</h1>
+  <p>BlitzBook &middot; blitzbook.co.in</p>
+</div></header>
+<main>
+  <p>You can ask for your <b>BlitzBook</b> account (Android app and web portal, by BlitzBook, blitzbook.co.in) and the data kept with it to be deleted at any time. You do not need to have the app installed.</p>
+
+  <h2>How to ask</h2>
+  <ol>
+    <li>Send an email to <a href="mailto:info@blitzbook.co.in?subject=Delete%20my%20BlitzBook%20account">info@blitzbook.co.in</a> with the subject <b>Delete my BlitzBook account</b>.</li>
+    <li>Send it from the email address of your account, or give the mobile number or email address you log in with, so that we can find the account.</li>
+    <li>We reply to confirm that the request comes from you. Once you confirm, the account is deleted within 30 days, and we tell you when it is done.</li>
+  </ol>
+  <a class="btn" href="mailto:info@blitzbook.co.in?subject=Delete%20my%20BlitzBook%20account&amp;body=Please%20delete%20my%20BlitzBook%20account%20and%20its%20data.%0A%0AMobile%20number%20or%20email%20I%20log%20in%20with%3A%20">Email the deletion request</a>
+  <div class="note"><b>Take a copy first if you need one.</b> Deletion cannot be undone. Use Export / Import in the app or the portal to save a backup file of your books, and download any reports you must keep for your tax records.</div>
+
+  <h2>What is deleted</h2>
+  <ul>
+    <li>Your login and account details: name, mobile number, email address and password.</li>
+    <li>Your books on the server: company profile, customers, suppliers, items, invoices and every other entry, HR and payroll records included.</li>
+    <li>The companies you own, with the roles you gave other people in them (they lose access to those companies), your licences and their assignments, and any AI access keys.</li>
+  </ul>
+
+  <h2>What is kept, and for how long</h2>
+  <ul>
+    <li><b>Backups:</b> the nightly backups of the server are kept for up to 60 days. Your data drops out of them within 60 days of the deletion and is not used for anything else in the meantime.</li>
+    <li><b>Payment records:</b> the record of payments you made to BlitzBook (plan, amount, date, payment reference) is kept for as long as tax and accounting law requires.</li>
+    <li><b>Data on your own devices:</b> the app's copy of your books on your phone, and PDF or Excel files in your Downloads folder, stay on your device. Uninstall the app (or clear its data in Android's settings) and delete those files to remove them.</li>
+  </ul>
+
+  <h2>Deleting only some data</h2>
+  <p>You can delete individual invoices, contacts, items and other entries yourself in the app and the portal. If you want your books removed from the server but want to keep the account, write to the same address and say so.</p>
+
+  <div class="foot">See also: <a href="../privacy/">Privacy Policy</a> &middot; <a href="../">BlitzBook web portal</a></div>
+</main>
+</body>
+</html>
